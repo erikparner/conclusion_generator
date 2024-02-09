@@ -201,7 +201,7 @@ rd_to_percent <- function(rd, decimals=2, interpret_measure="", interpret_direct
       posttext <- ""
     }
     text <- paste0(percent(-rd, accuracy=10^(-(decimals-2))),
-                   " ",
+                   " point ",
                    interpret_measure, 
                    posttext
     )
@@ -213,7 +213,7 @@ rd_to_percent <- function(rd, decimals=2, interpret_measure="", interpret_direct
       posttext <- ""
     }
     text <- paste0(percent(rd, accuracy=10^(-(decimals-2))), 
-                   " ",
+                   " point ",
                    interpret_measure, 
                    posttext
     )
@@ -328,5 +328,5 @@ conclusionBC <- function(estimate=NA,
   conclusion
 }
 
-# measure_to_percent(-0.20, measure="RD", interpret_measure=paste0("risk", " "))
+measure_to_percent(-0.20, measure="RD", interpret_measure=paste0("risk", " "))
 # rd_to_percent(-0.20, interpret_measure=paste0("risk", " "))
