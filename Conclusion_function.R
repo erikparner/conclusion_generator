@@ -340,6 +340,3 @@ conclusionBC <- function(estimate=NA,
   
   conclusion
 }
-
-measure_to_percent(-0.20, measure="RD", interpret_measure=paste0("risk", " "))
-# rd_to_percent(-0.20, interpret_measure=paste0("risk", " "))
