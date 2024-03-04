@@ -94,7 +94,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Important benefit") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", corresponded to a ",
+                                    ", corresponding to a ",
                                     measure_to_percent(estimate, decimals=decimals, measure=measure, interpret_measure=paste0(measure_type, " ")),
                                     ", supported a clinically important benefit.")
     }
@@ -102,7 +102,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Too small to be important benefit") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", corresponded to a ",
+                                    ", corresponding to a ",
                                     measure_to_percent(estimate, decimals=decimals, measure=measure, interpret_measure=paste0(measure_type, " ")),
                                     ", supported a benefit too small to be clinically important.")
     }
@@ -110,7 +110,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Too small to be important harm") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", corresponded to a ",
+                                    ", corresponding to a ",
                                     measure_to_percent(estimate, decimals=decimals, measure=measure, interpret_measure=paste0(measure_type, " ")),
                                     ", supported a harm too small to be clinically important.")
     }
@@ -118,7 +118,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Important harm") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", corresponded to a ",
+                                    ", corresponding to a ",
                                     measure_to_percent(estimate, decimals=decimals, measure=measure, interpret_measure=paste0(measure_type, " ")),
                                     ", supported a clinically important harm.")
     }
@@ -151,30 +151,20 @@ conclusionA <- function(estimate=NA,
         number(ci_lower, accuracy=10^(-decimals)),
         ",")
     }
-    if(estimate_importance=="Important harm" & ci_lower_importance=="Important harm") {
-      conclusion_ci_lower <- paste0(
-        " The data leaves open an even stronger harmful effect up to ",
-        number(ci_lower, accuracy=10^(-decimals)),
-        ",")
+    if(ci_lower_importance=="Important harm") {
+      # Then "ci_lower_importance==estimate_importance & estimate_importance==ci_upper_importance", 
+      # see below (assuming input is consistent).
     }
-    if(estimate_importance=="Important harm" & ci_lower_importance=="Important harm") {
-      conclusion_ci_lower <- paste0(
-        " The data leaves open an strong harmful effect up to ",
-        number(ci_lower, accuracy=10^(-decimals)),
-        ",")
-    }
-    
+
     # Upper limit.
     conclusion_ci_upper <- ""
     if(ci_upper_importance=="Important benefit") {
-      conclusion_ci_upper <- paste0(
-        " and it is compatible with a strong beneficial effect up to  ",
-        number(ci_upper, accuracy=10^(-decimals)),
-        ". ")
+      # Then "ci_lower_importance==estimate_importance & estimate_importance==ci_upper_importance", 
+      # see below (assuming input is consistent).
     }
     if(ci_upper_importance=="Too small to be important benefit") {
       conclusion_ci_upper <- paste0(
-        " and it provided evidence against a harmful effect larger than ",
+        " and incompatible with an effect smaller than ",
         number(ci_upper, accuracy=10^(-decimals)),
         ".")
     }
@@ -244,7 +234,6 @@ conclusionA <- function(estimate=NA,
                                     ", supported a clinically important harm.")
     }
     
-    
     # Create conclusion.
     conclusion <- paste0(conclusion_estimate)
   }
@@ -270,7 +259,7 @@ conclusionBC <- function(estimate=NA,
   # Estimate
   conclusion <- paste0("Assuming no uncontrolled biases, the point estimate of ",
                        number(estimate, accuracy=10^(-decimals)),
-                       " corresponded to a ",
+                       " corresponding to a ",
                        measure_to_percent(estimate, decimals=decimals, measure=measure, interpret_measure=paste0(measure_type, " ")),
                        " as the most likely effect given the data"
   )
@@ -300,37 +289,43 @@ conclusionBC <- function(estimate=NA,
     mention_noninferiority <-  paste0("Given that an increase of up to ",
                                       measure_to_percent(noninferiority, decimals=decimals, measure=measure, interpret_direction=FALSE),
                                       " would be considered an acceptable risk given the large balance of evidence is toward benefit,")
+    # 1.
     if(ci_lower<=superiority & ci_upper<=superiority) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority,
                             " our results show evidence for important benefit of the treatment."
       )
     }
+    # 2.
     if(ci_lower<=superiority & superiority<ci_upper & ci_upper<=noninferiority) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority_noninferiority,
                             " our results support further trials of the treatment."
       )
     }
+    # 3.
     if(ci_lower<=superiority & noninferiority<ci_upper ) {
       conclusion  <- paste0(conclusion,
                             mention_superiority_noninferiority,
                             " the effect of the treatment remains uncertain."
       )
     }
+    # 4.
     if(superiority<ci_lower & ci_lower<=noninferiority & ci_upper<=noninferiority) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority_noninferiority,
                             " our results provide evidence for no important benefit of the treatment, but also evidence for no important increase in risk."
       )
     }
+    # 5.
     if(superiority<ci_lower & ci_lower<=noninferiority & noninferiority<ci_upper) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority_noninferiority,
                             " our results provide evidence for no important benefit of the treatment, but it may be associated with an important increase in risk."
       )
     }
-    if(noninferiority<ci_lower & ci_upper<noninferiority) {
+    # 6.
+    if(noninferiority<ci_lower) {
       conclusion  <- paste0(conclusion, 
                             mention_noninferiority,
                             " our results provide evidence for important harm of the treatment."
