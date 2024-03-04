@@ -82,11 +82,21 @@ conclusionA <- function(estimate=NA,
                         decimals=2) {
   
   conclusion <- ""
+  
   measure_type=""
   if(measure=="RR") measure_type="risk"
   if(measure=="RD") measure_type="risk"
   if(measure=="HR"|measure=="IRR") measure_type="rate"
   if(measure=="OR") measure_type="odds"
+  
+  # For checking consistency of input.
+  importance_list <- c("Important benefit", 
+                       "Too small to be important benefit", 
+                       "Too small to be important harm",
+                       "Important harm")
+  estimate_number <- match(estimate_importance, importance_list)
+  ci_lower_number <- match(ci_lower_importance, importance_list)
+  ci_upper_number <- match(ci_upper_importance, importance_list)
   
   if(ci_lower_importance!=estimate_importance | estimate_importance!=ci_upper_importance) {
     
@@ -141,7 +151,7 @@ conclusionA <- function(estimate=NA,
     }
     if(ci_lower_importance=="Too small to be important benefit") {
       conclusion_ci_lower <- paste0(
-        " The data provided evidence against a effect larger than ",
+        " The data provided evidence against an effect larger than ",
         number(ci_lower, accuracy=10^(-decimals)),
         ",")
     }
@@ -170,7 +180,7 @@ conclusionA <- function(estimate=NA,
     }
     if(ci_upper_importance=="Too small to be important harm") {
       conclusion_ci_upper <- paste0(
-        " and incompatible with an effect substantially larger than ",
+        " and incompatible with a harmful effect substantially larger than ",
         number(ci_upper, accuracy=10^(-decimals)),
         ".")
     }
@@ -193,8 +203,8 @@ conclusionA <- function(estimate=NA,
                          conclusion_ci_upper)
   }
   
+  # Same interpretation of estimate and confidence limits.
   if(ci_lower_importance==estimate_importance & estimate_importance==ci_upper_importance) {
-    
     # Estimate.
     if(estimate_importance=="Important benefit") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
@@ -218,7 +228,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Too small to be important harm") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", together with evidence for an harmful effect too small to be important between ", 
+                                    ", together with evidence for a harmful effect too small to be important between ", 
                                     number(ci_lower, accuracy=10^(-decimals)),
                                     " and ", 
                                     number(ci_upper, accuracy=10^(-decimals)),
@@ -227,7 +237,7 @@ conclusionA <- function(estimate=NA,
     if(estimate_importance=="Important harm") {
       conclusion_estimate <- paste0("Our estimated effect of ", 
                                     number(estimate, accuracy=10^(-decimals)), 
-                                    ", together with evidence for an harmful effect between ", 
+                                    ", together with evidence for a harmful effect between ", 
                                     number(ci_lower, accuracy=10^(-decimals)),
                                     " and ", 
                                     number(ci_upper, accuracy=10^(-decimals)),
@@ -236,6 +246,11 @@ conclusionA <- function(estimate=NA,
     
     # Create conclusion.
     conclusion <- paste0(conclusion_estimate)
+  }
+  
+  # Check if input is consistent.
+  if(!(ci_lower_number<=estimate_number & estimate_number<=ci_upper_number)) {
+    conclusion <- "The input is inconsistent."
   }
   
   conclusion
