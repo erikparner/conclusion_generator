@@ -2,7 +2,7 @@
 
 ### Conclusion generator
 
-The file Conclusion_function.R contains two functions for generating the conclusions in the paper Schmidt and Parner (2024), The Conclusion Generator, to appear in Annals of Epidemiology. 
+The file Conclusion_function.R contains two functions for generating the conclusions in the paper Schmidt and Parner (2024), The Conclusion Generator, to appear in Annals of Epidemiology ([Paper](https://www.sciencedirect.com/science/article/pii/S1047279724001042)). 
 
 * conclusionAB creates the conclusion in the Statistical Mode.
 * conclusionC creates the conclusion in the Clinical Mode.
