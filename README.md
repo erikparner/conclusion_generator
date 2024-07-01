@@ -7,7 +7,9 @@ The file Conclusion_function.R contains functions for generating the conclusions
 * conclusionAB_short and conclusionAB_long create the conclusions in the Statistical Mode in the Concise and Elaborated versions, respectively.
 * conclusionC creates the conclusion in the Clinical Mode.
 
-The code 
+#### Rumbold et al (2006) example code
+
+The study examines the effect of vitamins C and E supplements on the risk of preeclampsia and perinatal complications.
 
 ``` r
 library(scales)
