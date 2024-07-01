@@ -350,3 +350,100 @@ conclusionBC <- function(estimate=NA,
   
   conclusion
 }
+
+
+conclusionNEW <- function(
+    estimate=NA,
+    ci_lower=NA,
+    ci_upper=NA,
+    noninferiority=NA,
+    superiority=NA,
+    measure="RR",
+    decimals=2) {
+  
+  
+  measure_type=""
+  if(measure=="RR") measure_type="relative risk"
+  if(measure=="RD") measure_type="risk difference"
+  if(measure=="HR"|measure=="IRR") measure_type="rate ratio"
+  if(measure=="OR") measure_type="odds ratio"
+  
+  # Estimate
+  conclusion <- paste0("Our results are most compatible with a",
+                       measure_type,
+                       "of",
+                       number(estimate, accuracy=10^(-decimals))
+  )
+  
+  # Interval.
+  conclusion <- paste0(conclusion, 
+                       ", although highly compatible with ",
+                       measure_type,
+                       "ranging ",
+                       number(ci_lower, accuracy=10^(-decimals)),
+                       "to",
+                       number(ci_upper, accuracy=10^(-decimals)),
+                       "."
+  )
+  
+  if(!is.na(superiority) & !is.na(noninferiority)) {
+    # Superiority and non-inferiority.
+    mention_superiority_noninferiority <-  paste0("With a superiority bound of ",
+                                                  number(superiority, accuracy=10^(-decimals)),
+                                                  " and a noninferiority bound of ",
+                                                  number(noninferiority, accuracy=10^(-decimals)),
+                                                  ",")
+    mention_superiority <-  paste0("With a superiority bound of ",
+                                   number(superiority, accuracy=10^(-decimals)),
+                                   ",")
+    mention_noninferiority <-  paste0("With a noninferiority bound of ",
+                                      number(noninferiority, accuracy=10^(-decimals)),
+                                      ",")
+    
+    # 1.
+    if(ci_lower<=superiority & ci_upper<=superiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " these results are largely compatible with a beneficial effect."
+      )
+    }
+    # 2.
+    if(ci_lower<=superiority & superiority<ci_upper & ci_upper<=noninferiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority_noninferiority,
+                            " our results support further trials of the treatment."
+      )
+    }
+    # 3.
+    if(ci_lower<=superiority & noninferiority<ci_upper ) {
+      conclusion  <- paste0(conclusion,
+                            mention_superiority_noninferiority,
+                            " the effect of the treatment remains uncertain."
+      )
+    }
+    # 4.
+    if(superiority<ci_lower & ci_lower<=noninferiority & ci_upper<=noninferiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority_noninferiority,
+                            " our results provide evidence for no important benefit of the treatment, but also evidence for no important increase in risk."
+      )
+    }
+    # 5.
+    if(superiority<ci_lower & ci_lower<=noninferiority & noninferiority<ci_upper) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority_noninferiority,
+                            " our results provide evidence for no important benefit of the treatment, but it may be associated with an important increase in risk."
+      )
+    }
+    # 6.
+    if(noninferiority<ci_lower) {
+      conclusion  <- paste0(conclusion, 
+                            mention_noninferiority,
+                            " our results provide evidence for important harm of the treatment."
+      )
+    }
+  }
+  
+  conclusion
+}
+
