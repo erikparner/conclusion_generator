@@ -1,5 +1,6 @@
 # library(scales)
 
+# Format a relative measure as percent increase or decrease. 
 relative_to_percent <- function(relative, decimals=2, interpret_measure="", interpret_direction=TRUE) {
   if(relative<=1) {
     if(interpret_direction) {
@@ -28,6 +29,7 @@ relative_to_percent <- function(relative, decimals=2, interpret_measure="", inte
   text
 }
 
+# Format a risk difference (RD) to percent difference.
 rd_to_percent <- function(rd, decimals=2, interpret_measure="", interpret_direction=TRUE) {
   if(rd<=0) {
     if(interpret_direction) {
@@ -56,6 +58,7 @@ rd_to_percent <- function(rd, decimals=2, interpret_measure="", interpret_direct
   text
 }
 
+# Convert a measure (RR, HR, IRR or OR) to percent increase or decrease.
 measure_to_percent <- function(number, decimals=2, measure="RR", interpret_measure="", interpret_direction=TRUE) {
   if(measure %in% c("RR", "HR", "IRR", "OR")) {
     text=relative_to_percent(relative=number, 
@@ -72,7 +75,18 @@ measure_to_percent <- function(number, decimals=2, measure="RR", interpret_measu
   text
 }
 
-
+# The conclusion generation in Statistical Mode and concise version
+# 
+# estimate The estimate.
+# ci_lower The lower confidence limit.
+# ci_upper The upper confidence limit.
+# noninferiority Noninferiority margin. Optional. 
+# superiority Superiority margin. Optional. 
+# measure The association measure, RR (risk ratio), RD (risk difference), 
+#          HR (hazard ratio) and IRR (incidence rate ratio).
+# decimals Number of decimals.
+# direction_benefical The direction of a benefical effect: "small" or "lager" 
+#          values of the association measure.
 conclusionAB_short <- function(
     estimate=NA,
     ci_lower=NA,
@@ -204,6 +218,18 @@ conclusionAB_short <- function(
 }
 
 
+# The conclusion generation in Statistical Mode and elaborate version.
+# 
+# estimate The estimate.
+# ci_lower The lower confidence limit.
+# ci_upper The upper confidence limit.
+# noninferiority Noninferiority margin. Optional. 
+# superiority Superiority margin. Optional. 
+# measure The association measure, RR (risk ratio), RD (risk difference), 
+#          HR (hazard ratio) and IRR (incidence rate ratio).
+# decimals Number of decimals.
+# direction_benefical The direction of a benefical effect: "small" or "lager" 
+#          values of the association measure.
 conclusionAB_long <- function(estimate=NA,
                          ci_lower=NA,
                          ci_upper=NA,
@@ -349,9 +375,25 @@ conclusionAB_long <- function(estimate=NA,
 }
 
 
-
-
-
+# The conclusion generation in Clinical Mode.
+# 
+# estimate The estimate.
+# estimate_importance Interpretation of the estimate: "Important benefit";
+#          "Too small to be important benefit"; "Too small to be important harm";
+#         "Important harm".
+# ci_lower The lower confidence limit.
+# ci_lower_importance Interpretation of the lower confidence limit: 
+#          "Important benefit"; "Too small to be important benefit"; 
+#          "Too small to be important harm"; "Important harm".
+# ci_upper The upper confidence limit.
+# ci_upper_importance Interpretation of the upper confidence limit: 
+#          "Important benefit"; "Too small to be important benefit"; 
+#          "Too small to be important harm"; "Important harm".
+# measure The association measure, RR (risk ratio), RD (risk difference), 
+#          HR (hazard ratio) and IRR (incidence rate ratio).
+# decimals Number of decimals.
+# direction_benefical The direction of a benefical effect: "small" or "lager" 
+#          values of the association measure.
 conclusionC <- function(estimate=NA,
                         estimate_importance="",
                         ci_lower=NA,
