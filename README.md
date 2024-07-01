@@ -4,7 +4,7 @@
 
 The file Conclusion_function.R contains functions for generating the conclusions in the paper [Schmidt and Parner (2024)](https://www.sciencedirect.com/science/article/pii/S1047279724001042), The Conclusion Generator, Annals of Epidemiology:
 
-* conclusionAB_short and conclusionAB_long create the conclusions in the Statistical Mode in the Concise Mode and Elaborated version, respectively.
+* conclusionAB_short and conclusionAB_long create the conclusions in the Statistical Mode in the Concise and Elaborated versions, respectively.
 * conclusionC creates the conclusion in the Clinical Mode.
 
 The code 
