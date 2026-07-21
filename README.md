@@ -13,23 +13,6 @@ A Shiny web app is found [here](https://apps.biostat.au.dk/erikparner/Conclusion
 
 The file `Conclusion_function_1994.R` contains the functions for generating the exact conclusions in Schmidt and Parner (2024).
 
-## Citation
-
-If you use **Conclusion Generator** in your research, please cite:
-
-> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.05.002
-
-**BibTeX**
-
-```bibtex
-@article{schmidt2024conclusion,
-  author  = {Schmidt, M. and Parner, E.},
-  title   = {The Conclusion Generator},
-  journal = {Annals of Epidemiology},
-  year    = {2024},
-  doi     = {10.1016/j.annepidem.2024.05.002}
-}
-```
 
 ## Installation
 
@@ -111,5 +94,23 @@ produces the conclusions
   *Assuming no uncontrolled biases, the point estimate of 0.79 corresponds to a 21% risk reduction as the most likely effect given the data, although the interval estimate is compatible with a range from a 39% reduction to a 2% increase in risk from treatment. Given that a reduction of 4%  or more would be considered clinically and economically worthwhile, and an increase of up to 2%  would be considered an acceptable risk, the effect of the treatment remains uncertain.*
 * **Clinical Mode**: <br>
   *Assuming no uncontrolled biases, our estimated effect of 0.79, corresponding to a 21% risk reduction, supported a clinically important benefit. The data were compatible with an even stronger beneficial effect of as much as 0.61, and incompatible with a harmful effect substantially larger than 1.02.*
+
+## Citation
+
+If you use **Conclusion Generator** in your research, please cite:
+
+> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.05.002
+
+**BibTeX**
+
+```bibtex
+@article{schmidt2024conclusion,
+  author  = {Schmidt, M. and Parner, E.},
+  title   = {The Conclusion Generator},
+  journal = {Annals of Epidemiology},
+  year    = {2024},
+  doi     = {10.1016/j.annepidem.2024.05.002}
+}
+```
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/erikparner/conclusion_generator">Conclusion generator</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.au.dk/vis/person/parner@ph.au.dk">Erik Parner</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
