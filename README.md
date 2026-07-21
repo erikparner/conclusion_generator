@@ -47,10 +47,6 @@ source("Conclusion_function.R")
 Rumbold et al (2006)  examines the effect of vitamins C and E supplements on the risk of preeclampsia and perinatal complications.
 
 ``` r
-library(scales)
-library(dplyr)
-source("Conclusion_function.R")
-
 conclusion_statistical(
   estimate=0.79,
   ci_lower=0.61,
@@ -99,7 +95,7 @@ produces the conclusions
 
 If you use **Conclusion Generator** in your research, please cite:
 
-> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.05.002
+> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
 
 **BibTeX**
 
@@ -109,7 +105,7 @@ If you use **Conclusion Generator** in your research, please cite:
   title   = {The Conclusion Generator},
   journal = {Annals of Epidemiology},
   year    = {2024},
-  doi     = {10.1016/j.annepidem.2024.05.002}
+  doi     = {10.1016/j.annepidem.2024.06.008}
 }
 ```
 
