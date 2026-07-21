@@ -1,4 +1,4 @@
-7# library(scales)
+# library(scales)
 
 # Format a relative measure as percent increase or decrease. 
 # decimals: Number of decimals that is specified for the relative measure. 
@@ -653,7 +653,7 @@ conclusion_statistical <- function(
     type="short") {
   
   if(type=="short") {
-    conclusion <- conclusionAB_short(
+    conclusion <- conclusion_statistical_short(
       estimate=estimate,
       ci_lower=ci_lower,
       ci_upper=ci_upper,
@@ -666,7 +666,7 @@ conclusion_statistical <- function(
     )
   }
   if(type=="long") {
-    conclusion <- conclusionAB_long(
+    conclusion <- conclusion_statistical_long(
       estimate=estimate,
       ci_lower=ci_lower,
       ci_upper=ci_upper,
