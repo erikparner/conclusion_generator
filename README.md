@@ -2,14 +2,14 @@
 
 ### Conclusion generator
 
-The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper [Schmidt and Parner (2024)](https://www.sciencedirect.com/science/article/pii/S1047279724001042), The Conclusion Generator, Annals of Epidemiology:
+The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper [Schmidt and Parner (2024)](https://www.sciencedirect.com/science/article/pii/S1047279724001042), _The Conclusion Generator_, Annals of Epidemiology:
 
-* conclusion_statistical creates the conclusions in the Statistical Mode.
-* conclusion_clinical creates the conclusion in the Clinical Mode.
+* `conclusion_statistical` creates the conclusions in the Statistical Mode.
+* `conclusion_clinical` creates the conclusion in the Clinical Mode.
 
 A Shiny web app is found [here](https://apps.biostat.au.dk/erikparner/Conclusion_app/). 
 
-The file Conclusion_function_1994.R contains the functions for generating the exact conclusions in Schmidt and Parner (2024).
+The file `Conclusion_function_1994.R` contains the functions for generating the exact conclusions in Schmidt and Parner (2024).
 
 #### Rumbold et al (2006) example code
 
