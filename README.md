@@ -2,9 +2,13 @@
 
 ## Conclusion generator
 
-**Conclusion Generator** is an R implementation of the framework proposed by Schmidt and Parner (2024) for generating standardized textual conclusions from effect estimates and confidence intervals. It provides conclusions in both **Statistical Mode** and **Clinical Mode**, facilitating consistent interpretation and reporting of study results.
+**Conclusion Generator** is an R implementation of the framework proposed in
 
-The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper [Schmidt and Parner (2024)](https://www.sciencedirect.com/science/article/pii/S1047279724001042), _The Conclusion Generator_, _Annals of Epidemiology_:
+> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
+
+for generating standardized textual conclusions from effect estimates and confidence intervals. It provides conclusions in both **Statistical Mode** and **Clinical Mode**, facilitating consistent interpretation and reporting of study results.
+
+The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper Schmidt and Parner (2024).
 
 * `conclusion_statistical` creates the conclusions in the *Statistical Mode*.
 * `conclusion_clinical` creates the conclusion in the *Clinical Mode*.
