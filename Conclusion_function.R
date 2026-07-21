@@ -1,4 +1,4 @@
-# library(scales)
+7# library(scales)
 
 # Format a relative measure as percent increase or decrease. 
 # decimals: Number of decimals that is specified for the relative measure. 
@@ -124,50 +124,50 @@ scenario_superiority_noninferiority <- function(
     superiority=NA,
     noninferiority=NA,
     no_effect=1,
-    direction_benefical="small") {
+    direction_beneficial="small") {
   
   # Testing input.
   stopifnot(
-    "direction_benefical must be 'small' or 'large'" =
-      direction_benefical %in% c("small", "large"),
+    "direction_beneficial must be 'small' or 'large'" =
+      direction_beneficial %in% c("small", "large"),
     "ci_lower, ci_upper, superiority, noninferiority, and no_effect must be non-NA" =
       !anyNA(c(ci_lower, ci_upper, superiority, noninferiority, no_effect)),
     "ci_lower must be <= ci_upper" =
       ci_lower <= ci_upper
   )
-  if (direction_benefical == "small") {
+  if (direction_beneficial == "small") {
     stopifnot(
-      "for direction_benefical='small', thresholds must satisfy: superiority < no_effect < noninferiority" =
+      "for direction_beneficial='small', thresholds must satisfy: superiority < no_effect < noninferiority" =
         superiority < no_effect && no_effect < noninferiority
     )
   } else {
     stopifnot(
-      "for direction_benefical='large', thresholds must satisfy: noninferiority < no_effect < superiority" =
+      "for direction_beneficial='large', thresholds must satisfy: noninferiority < no_effect < superiority" =
         noninferiority < no_effect && no_effect < superiority
     )
   }
 
   scenario <- case_when(
-    (direction_benefical=="small" & ci_upper<superiority) | 
-      (direction_benefical=="large" & superiority<ci_lower) ~ 1,
-    (direction_benefical=="small" & ci_lower<superiority & superiority<=ci_upper & ci_upper<no_effect) | 
-      (direction_benefical=="large" & no_effect<ci_lower & ci_lower<=superiority & superiority<ci_upper) ~ 2,
-    (direction_benefical=="small" & ci_lower<superiority & no_effect<=ci_upper & ci_upper<noninferiority) | 
-      (direction_benefical=="large" & noninferiority<ci_lower & ci_lower<=no_effect & superiority<ci_upper) ~ 3,
-    (direction_benefical=="small" & ci_lower<superiority & noninferiority<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=noninferiority & superiority<ci_upper ) ~ 4,
-    (direction_benefical=="small" & superiority<=ci_lower & ci_upper<no_effect) |
-      (direction_benefical=="large" & no_effect<ci_lower & ci_upper<=superiority) ~ 5,
-    (direction_benefical=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<noninferiority) |
-      (direction_benefical=="large" & noninferiority<ci_lower & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<=superiority) ~ 6,
-    (direction_benefical=="small" & superiority<=ci_lower & ci_lower<=no_effect & noninferiority<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=noninferiority & no_effect<=ci_upper & ci_upper<=superiority) ~ 7,
-    (direction_benefical=="small" & no_effect<ci_lower & ci_upper<noninferiority) |
-      (direction_benefical=="large" & noninferiority<ci_lower & ci_upper<no_effect) ~ 8,
-    (direction_benefical=="small" & no_effect<ci_lower & ci_lower<noninferiority & noninferiority<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=noninferiority & noninferiority<ci_upper & ci_upper<no_effect) ~ 9,
-    (direction_benefical=="small" & noninferiority<=ci_lower) | 
-      (direction_benefical=="large" & ci_upper<=noninferiority) ~ 10,
+    (direction_beneficial=="small" & ci_upper<superiority) | 
+      (direction_beneficial=="large" & superiority<ci_lower) ~ 1,
+    (direction_beneficial=="small" & ci_lower<superiority & superiority<=ci_upper & ci_upper<no_effect) | 
+      (direction_beneficial=="large" & no_effect<ci_lower & ci_lower<=superiority & superiority<ci_upper) ~ 2,
+    (direction_beneficial=="small" & ci_lower<superiority & no_effect<=ci_upper & ci_upper<noninferiority) | 
+      (direction_beneficial=="large" & noninferiority<ci_lower & ci_lower<=no_effect & superiority<ci_upper) ~ 3,
+    (direction_beneficial=="small" & ci_lower<superiority & noninferiority<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=noninferiority & superiority<ci_upper ) ~ 4,
+    (direction_beneficial=="small" & superiority<=ci_lower & ci_upper<no_effect) |
+      (direction_beneficial=="large" & no_effect<ci_lower & ci_upper<=superiority) ~ 5,
+    (direction_beneficial=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<noninferiority) |
+      (direction_beneficial=="large" & noninferiority<ci_lower & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<=superiority) ~ 6,
+    (direction_beneficial=="small" & superiority<=ci_lower & ci_lower<=no_effect & noninferiority<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=noninferiority & no_effect<=ci_upper & ci_upper<=superiority) ~ 7,
+    (direction_beneficial=="small" & no_effect<ci_lower & ci_upper<noninferiority) |
+      (direction_beneficial=="large" & noninferiority<ci_lower & ci_upper<no_effect) ~ 8,
+    (direction_beneficial=="small" & no_effect<ci_lower & ci_lower<noninferiority & noninferiority<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=noninferiority & noninferiority<ci_upper & ci_upper<no_effect) ~ 9,
+    (direction_beneficial=="small" & noninferiority<=ci_lower) | 
+      (direction_beneficial=="large" & ci_upper<=noninferiority) ~ 10,
     TRUE ~ 0
   )
   scenario
@@ -178,43 +178,43 @@ scenario_superiority <- function(
     ci_upper=NA,
     superiority=NA,
     no_effect=1,
-    direction_benefical="small"
+    direction_beneficial="small"
     ) {
   
   # Testing input.
   stopifnot(
-    "direction_benefical must be 'small' or 'large'" =
-      direction_benefical %in% c("small", "large"),
+    "direction_beneficial must be 'small' or 'large'" =
+      direction_beneficial %in% c("small", "large"),
     "ci_lower, ci_upper, superiority, and no_effect must be non-NA" =
       !anyNA(c(ci_lower, ci_upper, superiority, no_effect)),
     "ci_lower must be <= ci_upper" =
       ci_lower <= ci_upper
   )
-  if (direction_benefical == "small") {
+  if (direction_beneficial == "small") {
     stopifnot(
-      "for direction_benefical='small', thresholds must satisfy: superiority < no_effect" =
+      "for direction_beneficial='small', thresholds must satisfy: superiority < no_effect" =
         superiority < no_effect 
     )
   } else {
     stopifnot(
-      "for direction_benefical='large', thresholds must satisfy: no_effect < superiority" =
+      "for direction_beneficial='large', thresholds must satisfy: no_effect < superiority" =
         no_effect < superiority
     )
   }
   
   scenario <- case_when(
-    (direction_benefical=="small" & ci_upper<superiority) | 
-      (direction_benefical=="large" & superiority<ci_lower) ~ 1,
-    (direction_benefical=="small" & ci_lower<superiority & superiority<=ci_upper & ci_upper<no_effect) | 
-      (direction_benefical=="large" & no_effect<ci_lower & ci_lower<=superiority & superiority<ci_upper) ~ 2,
-    (direction_benefical=="small" & ci_lower<superiority & no_effect<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=no_effect & superiority<ci_upper ) ~ 3,
-    (direction_benefical=="small" & superiority<=ci_lower & ci_upper<no_effect) |
-      (direction_benefical=="large" & no_effect<ci_lower & ci_upper<=superiority) ~ 4,
-    (direction_benefical=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<=superiority) ~ 5,
-    (direction_benefical=="small" & no_effect<ci_lower) | 
-      (direction_benefical=="large" & ci_upper<no_effect) ~ 6,
+    (direction_beneficial=="small" & ci_upper<superiority) | 
+      (direction_beneficial=="large" & superiority<ci_lower) ~ 1,
+    (direction_beneficial=="small" & ci_lower<superiority & superiority<=ci_upper & ci_upper<no_effect) | 
+      (direction_beneficial=="large" & no_effect<ci_lower & ci_lower<=superiority & superiority<ci_upper) ~ 2,
+    (direction_beneficial=="small" & ci_lower<superiority & no_effect<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=no_effect & superiority<ci_upper ) ~ 3,
+    (direction_beneficial=="small" & superiority<=ci_lower & ci_upper<no_effect) |
+      (direction_beneficial=="large" & no_effect<ci_lower & ci_upper<=superiority) ~ 4,
+    (direction_beneficial=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=no_effect & no_effect<=ci_upper & ci_upper<=superiority) ~ 5,
+    (direction_beneficial=="small" & no_effect<ci_lower) | 
+      (direction_beneficial=="large" & ci_upper<no_effect) ~ 6,
     TRUE ~ 0
   )
   scenario
@@ -225,42 +225,42 @@ scenario_noninferiority <- function(
     ci_upper=NA,
     noninferiority=NA,
     no_effect=1,
-    direction_benefical="small") {
+    direction_beneficial="small") {
   
   # Testing input.
   stopifnot(
-    "direction_benefical must be 'small' or 'large'" =
-      direction_benefical %in% c("small", "large"),
+    "direction_beneficial must be 'small' or 'large'" =
+      direction_beneficial %in% c("small", "large"),
     "ci_lower, ci_upper, noninferiority, and no_effect must be non-NA" =
       !anyNA(c(ci_lower, ci_upper, noninferiority, no_effect)),
     "ci_lower must be <= ci_upper" =
       ci_lower <= ci_upper
   )
-  if (direction_benefical == "small") {
+  if (direction_beneficial == "small") {
     stopifnot(
-      "for direction_benefical='small', thresholds must satisfy: no_effect < noninferiority" =
+      "for direction_beneficial='small', thresholds must satisfy: no_effect < noninferiority" =
         no_effect < noninferiority
     )
   } else {
     stopifnot(
-      "for direction_benefical='large', thresholds must satisfy: noninferiority < no_effect" =
+      "for direction_beneficial='large', thresholds must satisfy: noninferiority < no_effect" =
         noninferiority < no_effect 
     )
   }
   
   scenario <- case_when(
-    (direction_benefical=="small" & ci_upper<no_effect) | 
-      (direction_benefical=="large" & no_effect<ci_lower) ~ 1,
-    (direction_benefical=="small" & ci_lower<no_effect & no_effect<=ci_upper & ci_upper<noninferiority) | 
-      (direction_benefical=="large" & noninferiority<ci_lower & ci_lower<=no_effect & no_effect<ci_upper) ~ 2,
-    (direction_benefical=="small" & ci_lower<no_effect & noninferiority<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=noninferiority & no_effect<ci_upper ) ~ 3,
-    (direction_benefical=="small" & no_effect<=ci_lower & ci_upper<noninferiority) |
-      (direction_benefical=="large" & noninferiority<ci_lower & ci_upper<=no_effect) ~ 4,
-    (direction_benefical=="small" & no_effect<=ci_lower & ci_lower<noninferiority & noninferiority<=ci_upper) |
-      (direction_benefical=="large" & ci_lower<=noninferiority & noninferiority<ci_upper & ci_upper<=no_effect) ~ 5,
-    (direction_benefical=="small" & noninferiority<=ci_lower) | 
-      (direction_benefical=="large" & ci_upper<=noninferiority) ~ 6,
+    (direction_beneficial=="small" & ci_upper<no_effect) | 
+      (direction_beneficial=="large" & no_effect<ci_lower) ~ 1,
+    (direction_beneficial=="small" & ci_lower<no_effect & no_effect<=ci_upper & ci_upper<noninferiority) | 
+      (direction_beneficial=="large" & noninferiority<ci_lower & ci_lower<=no_effect & no_effect<ci_upper) ~ 2,
+    (direction_beneficial=="small" & ci_lower<no_effect & noninferiority<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=noninferiority & no_effect<ci_upper ) ~ 3,
+    (direction_beneficial=="small" & no_effect<=ci_lower & ci_upper<noninferiority) |
+      (direction_beneficial=="large" & noninferiority<ci_lower & ci_upper<=no_effect) ~ 4,
+    (direction_beneficial=="small" & no_effect<=ci_lower & ci_lower<noninferiority & noninferiority<=ci_upper) |
+      (direction_beneficial=="large" & ci_lower<=noninferiority & noninferiority<ci_upper & ci_upper<=no_effect) ~ 5,
+    (direction_beneficial=="small" & noninferiority<=ci_lower) | 
+      (direction_beneficial=="large" & ci_upper<=noninferiority) ~ 6,
     TRUE ~ 0
   )
   scenario
@@ -278,7 +278,7 @@ scenario_noninferiority <- function(
 # measure The association measure, RR (risk ratio), RD (risk difference), 
 #          HR (hazard ratio) and IRR (incidence rate ratio).
 # decimals Number of decimals.
-# direction_benefical The direction of a benefical effect: "small" or "lager" 
+# direction_beneficial The direction of a benefical effect: "small" or "lager" 
 #          values of the association measure.
 conclusion_statistical_short <- function(
     estimate=NA,
@@ -289,22 +289,22 @@ conclusion_statistical_short <- function(
     measure="RR",
     units="",
     decimals=2,
-    direction_benefical="small") {
+    direction_beneficial="small") {
   
   measure_type=""
-  if(measure=="RR" & direction_benefical=="small") {
+  if(measure=="RR" & direction_beneficial=="small") {
     measure_type="relative risk"
     no_effect=1
   }
-  if(measure=="RD" & direction_benefical=="small") {
+  if(measure=="RD" & direction_beneficial=="small") {
     measure_type="risk difference"
     no_effect=0
   }
-  if(measure=="RR" & direction_benefical=="large") {
+  if(measure=="RR" & direction_beneficial=="large") {
     measure_type="relative response rate"
     no_effect=1
   }
-  if(measure=="RD" & direction_benefical=="large") {
+  if(measure=="RD" & direction_beneficial=="large") {
     measure_type="response rate difference"
     no_effect=0
   }
@@ -352,7 +352,7 @@ conclusion_statistical_short <- function(
       superiority=superiority,
       noninferiority=noninferiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     # Mention superiority and non-inferiority.
@@ -396,7 +396,7 @@ conclusion_statistical_short <- function(
       ci_upper=ci_upper,
       superiority=superiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     # Superiority.
@@ -425,7 +425,7 @@ conclusion_statistical_short <- function(
       ci_upper=ci_upper,
       noninferiority=noninferiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     mention_noninferiority <-  paste0("With a noninferiority bound of ",
@@ -457,7 +457,7 @@ conclusion_statistical_short <- function(
 # measure The association measure, RR (risk ratio), RD (risk difference), 
 #          HR (hazard ratio), IRR (incidence rate ratio), or MD (mean difference).
 # decimals Number of decimals.
-# direction_benefical The direction of a benefical effect: "small" or "lager" 
+# direction_beneficial The direction of a benefical effect: "small" or "lager" 
 #          values of the association measure.
 conclusion_statistical_long <- function(estimate=NA,
                          ci_lower=NA,
@@ -467,23 +467,23 @@ conclusion_statistical_long <- function(estimate=NA,
                          measure="RR",
                          units="",
                          decimals=2,
-                         direction_benefical="small") {
+                         direction_beneficial="small") {
   
   
   measure_type=""
-  if(measure=="RR" & direction_benefical=="small"){
+  if(measure=="RR" & direction_beneficial=="small"){
     measure_type="risk"
     no_effect=1
   }
-  if(measure=="RD" & direction_benefical=="small") {
+  if(measure=="RD" & direction_beneficial=="small") {
     measure_type="risk"
     no_effect=0
   }
-  if(measure=="RR" & direction_benefical=="large") {
+  if(measure=="RR" & direction_beneficial=="large") {
     measure_type="response rate"
     no_effect=1
   }
-  if(measure=="RD" & direction_benefical=="large") {
+  if(measure=="RD" & direction_beneficial=="large") {
     measure_type="response rate"
     no_effect=0
   }
@@ -501,11 +501,11 @@ conclusion_statistical_long <- function(estimate=NA,
   }
   # Setting the units_text to be empty text unless MD is specified.
   units_text <- if(measure=="MD" & nchar(units) > 0) paste0(" ", units) else ""
-  if(direction_benefical=="small") {
+  if(direction_beneficial=="small") {
     direction_superiority="a reduction"
     direction_noninferiority="an increase"
   }
-  if(direction_benefical=="large") {
+  if(direction_beneficial=="large") {
     direction_superiority="an increase"
     direction_noninferiority="a reduction"
   }
@@ -538,7 +538,7 @@ conclusion_statistical_long <- function(estimate=NA,
       superiority=superiority,
       noninferiority=noninferiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     # Mention superiority and non-inferiority.
@@ -579,7 +579,7 @@ conclusion_statistical_long <- function(estimate=NA,
       ci_upper=ci_upper,
       superiority=superiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     # Superiority.
@@ -605,7 +605,7 @@ conclusion_statistical_long <- function(estimate=NA,
       ci_upper=ci_upper,
       noninferiority=noninferiority,
       no_effect=no_effect,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
     
     # Non-inferiority.
@@ -637,7 +637,7 @@ conclusion_statistical_long <- function(estimate=NA,
 # measure The association measure, RR (risk ratio), RD (risk difference), 
 #          HR (hazard ratio) and IRR (incidence rate ratio).
 # decimals Number of decimals.
-# direction_benefical The direction of a benefical effect: "small" or "lager" 
+# direction_beneficial The direction of a benefical effect: "small" or "lager" 
 #          values of the association measure.
 # type "short" or "long" for the short or long version of the conclusion.
 conclusion_statistical <- function(
@@ -649,7 +649,7 @@ conclusion_statistical <- function(
     measure="RR",
     units="",
     decimals=2,
-    direction_benefical="small",
+    direction_beneficial="small",
     type="short") {
   
   if(type=="short") {
@@ -662,7 +662,7 @@ conclusion_statistical <- function(
       measure=measure,
       units=units,
       decimals=decimals,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
   }
   if(type=="long") {
@@ -675,7 +675,7 @@ conclusion_statistical <- function(
       measure=measure,
       units=units,
       decimals=decimals,
-      direction_benefical=direction_benefical
+      direction_beneficial=direction_beneficial
     )
   }
   conclusion
@@ -699,7 +699,7 @@ conclusion_statistical <- function(
 # measure The association measure, RR (risk ratio), RD (risk difference), 
 #          HR (hazard ratio) and IRR (incidence rate ratio).
 # decimals Number of decimals.
-# direction_benefical The direction of a benefical effect: "small" or "lager" 
+# direction_beneficial The direction of a benefical effect: "small" or "lager" 
 #          values of the association measure.
 conclusion_clinical <- function(estimate=NA,
                         estimate_importance="",
@@ -710,16 +710,16 @@ conclusion_clinical <- function(estimate=NA,
                         measure="RR",
                         units="",
                         decimals=2,
-                        direction_benefical="small") {
+                        direction_beneficial="small") {
   
   conclusion <- ""
   units_text <- if(measure=="MD" & nchar(units) > 0) paste0(" ", units) else ""
   
   measure_type=""
-  if(measure=="RR" & direction_benefical=="small") measure_type="risk"
-  if(measure=="RD" & direction_benefical=="small") measure_type="risk"
-  if(measure=="RR" & direction_benefical=="large") measure_type="response"
-  if(measure=="RD" & direction_benefical=="large") measure_type="response"
+  if(measure=="RR" & direction_beneficial=="small") measure_type="risk"
+  if(measure=="RD" & direction_beneficial=="small") measure_type="risk"
+  if(measure=="RR" & direction_beneficial=="large") measure_type="response"
+  if(measure=="RD" & direction_beneficial=="large") measure_type="response"
   if(measure=="HR"|measure=="IRR") measure_type="rate"
   if(measure=="OR") measure_type="odds"
   if(measure=="MD") measure_type="mean"
@@ -733,7 +733,7 @@ conclusion_clinical <- function(estimate=NA,
   ci_lower_number <- match(ci_lower_importance, importance_list)
   ci_upper_number <- match(ci_upper_importance, importance_list)
   
-  if(direction_benefical=="small") {
+  if(direction_beneficial=="small") {
     if(ci_lower_importance!=estimate_importance | estimate_importance!=ci_upper_importance) {
       
       # Estimate.
@@ -900,7 +900,7 @@ conclusion_clinical <- function(estimate=NA,
     }
   }
   
-  if(direction_benefical=="large") {
+  if(direction_beneficial=="large") {
     if(ci_lower_importance!=estimate_importance | estimate_importance!=ci_upper_importance) {
       
       # Estimate.

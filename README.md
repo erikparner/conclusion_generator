@@ -27,7 +27,7 @@ conclusion_statistical(
   superiority= 0.96,
   noninferiority=1.02,
   measure = "RR",
-  direction_benefical="small",
+  direction_beneficial="small",
   decimals=2,
   type="short"
   )
@@ -39,7 +39,7 @@ conclusion_statistical(
   superiority= 0.96,
   noninferiority=1.02,
   measure = "RR",
-  direction_benefical="small",
+  direction_beneficial="small",
   decimals=2,
   type="long"
   )
