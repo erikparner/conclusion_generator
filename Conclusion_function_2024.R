@@ -142,6 +142,7 @@ conclusionAB_short <- function(
                        ". "
   )
   
+  # Both superiority and non-inferiority margins ----
   if(!is.na(superiority) & !is.na(noninferiority)) {
     # Superiority and non-inferiority.
     mention_superiority_noninferiority <-  paste0("With a superiority bound of ",
@@ -169,7 +170,7 @@ conclusionAB_short <- function(
         (direction_benefical=="large" & no_effect<=ci_lower & ci_lower<superiority & superiority<ci_upper) ) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority_noninferiority,
-                            " these results are largely compatible with a beneficial effect, although they are also highly compatible with little effect."
+                            " these results are largely compatible with a beneficial effect, although they are also highly compatible with no important effect."
       )
     }
     # Case 2.b Example Vitamin. 
@@ -177,7 +178,7 @@ conclusionAB_short <- function(
         (direction_benefical=="large" & noninferiority<=ci_lower & ci_lower<no_effect & superiority<ci_upper) ) {
       conclusion  <- paste0(conclusion, 
                             mention_superiority_noninferiority,
-                            " these results are largely compatible with a beneficial effect, although they are also highly compatible with little or no effect."
+                            " these results are largely compatible with a beneficial effect, although they are also highly compatible with no important or no effect."
       )
     }
     # Case 3. Example A, B.
@@ -214,6 +215,63 @@ conclusionAB_short <- function(
     }
   }
   
+  # Only superiority margin ----
+  # The division into cases is as above with no_effect instead of the noninferiority margin.
+  if(!is.na(superiority) & is.na(noninferiority)) {
+    # Superiority.
+    mention_superiority <-  paste0("With a superiority bound of ",
+                                   number(superiority, accuracy=10^(-decimals)),
+                                   ",")
+    
+    # Case 1. Example D. 
+    if( (direction_benefical=="small" & ci_upper<superiority) | 
+        (direction_benefical=="large" & superiority<ci_lower) ) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " these results are largely compatible with a beneficial effect."
+      )
+    }
+    # Case 2 Example C.  
+    if( (direction_benefical=="small" & ci_lower<superiority & superiority<ci_upper & ci_upper<=no_effect) | 
+        (direction_benefical=="large" & no_effect<=ci_lower & ci_lower<superiority & superiority<ci_upper) ) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " these results are largely compatible with a beneficial effect, although they are also compatible with no important effect."
+      )
+    }
+    # Case 3. Example A, B.
+    if( (direction_benefical=="small" & ci_lower<superiority & no_effect<ci_upper) |
+        (direction_benefical=="large" & ci_lower<no_effect & superiority<ci_upper ) ) {
+      conclusion  <- paste0(conclusion,
+                            mention_superiority,
+                            " the effect of the treatment remains uncertain."
+      )
+    }
+    # Case 4. Example E.
+    if( (direction_benefical=="small" & superiority<=ci_lower & ci_upper<=no_effect) |
+        (direction_benefical=="large" & no_effect<=ci_lower & ci_upper<=superiority) ) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but also evidence for no increase in risk."
+      )
+    }
+    # Case 5. Example F.
+    if( (direction_benefical=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<ci_upper) |
+        (direction_benefical=="large" & ci_lower<no_effect & no_effect<=ci_upper & ci_upper<=superiority) ) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but it may be associated with an increase in risk."
+      )
+    }
+    # Case 6.
+    if( (direction_benefical=="small" & no_effect<ci_lower) | 
+        (direction_benefical=="large" & ci_upper<no_effect) ) {
+      conclusion  <- paste0(conclusion, 
+                            " Our results provide evidence for a harm of the treatment."
+      )
+    }
+  }
+  
   conclusion
 }
 
@@ -241,12 +299,30 @@ conclusionAB_long <- function(estimate=NA,
   
   
   measure_type=""
-  if(measure=="RR" & direction_benefical=="small") measure_type="risk"
-  if(measure=="RD" & direction_benefical=="small") measure_type="risk"
-  if(measure=="RR" & direction_benefical=="large") measure_type="response rate"
-  if(measure=="RD" & direction_benefical=="large") measure_type="response rate"
-  if(measure=="HR"|measure=="IRR") measure_type="rate"
-  if(measure=="OR") measure_type="odds"
+  if(measure=="RR" & direction_benefical=="small"){
+    measure_type="risk"
+    no_effect=1
+  }
+  if(measure=="RD" & direction_benefical=="small") {
+    measure_type="risk"
+    no_effect=0
+  }
+  if(measure=="RR" & direction_benefical=="large") {
+    measure_type="response rate"
+    no_effect=1
+  }
+  if(measure=="RD" & direction_benefical=="large") {
+    measure_type="response rate"
+    no_effect=0
+  }
+  if(measure=="HR"|measure=="IRR") { 
+    measure_type="rate"
+    no_effect=1
+  }
+  if(measure=="OR") {
+    measure_type="odds"
+    no_effect=1
+  }
   if(direction_benefical=="small") {
     direction_superiority="a reduction"
     direction_noninferiority="an increase"
@@ -274,7 +350,8 @@ conclusionAB_long <- function(estimate=NA,
                        measure_type, 
                        " from treatment. "
   )
-  
+
+  # Both superiority and non-inferiority margins ----  
   if(!is.na(superiority) & !is.na(noninferiority)) {
     # Superiority and non-inferiority.
     
@@ -367,6 +444,92 @@ conclusionAB_long <- function(estimate=NA,
       conclusion  <- paste0(conclusion, 
                             mention_noninferiority,
                             " our results provide evidence for important harm of the treatment."
+      )
+    }
+  }
+  
+  # Only superiority margin ----
+  # The division into cases is as above with no_effect instead of the noninferiority margin.
+  if(!is.na(superiority) & is.na(noninferiority)) {
+    # Superiority.
+    mention_superiority <-  paste0("Given that ", direction_superiority, " of ",
+                                   measure_to_percent(superiority, decimals=decimals, measure=measure, interpret_direction=FALSE),
+                                   " or more would be considered worth the cost and side effects of the treatment (if any),")
+
+    # Case 1. Example D. 
+    if(direction_benefical=="small" & ci_upper<superiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results show evidence for important benefit of the treatment."
+      )
+    }
+    if(direction_benefical=="large" & superiority<ci_lower) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results show evidence for important benefit of the treatment."
+      )
+    }
+    # Case 2. Example C. 
+    if(direction_benefical=="small" & ci_lower<superiority & superiority<ci_upper & ci_upper<=no_effect) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results support further trials of the treatment."
+      )
+    }
+    if(direction_benefical=="large" & no_effect<=ci_lower & ci_lower<superiority & superiority<ci_upper) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results support further trials of the treatment."
+      )
+    }
+    # Case 3. Example A.
+    if(direction_benefical=="small" & ci_lower<superiority & no_effect<ci_upper) {
+      conclusion  <- paste0(conclusion,
+                            mention_superiority,
+                            " the effect of the treatment remains uncertain."
+      )
+    }
+    if(direction_benefical=="large" & ci_lower<no_effect & superiority<ci_upper ) {
+      conclusion  <- paste0(conclusion,
+                            mention_superiority,
+                            " the effect of the treatment remains uncertain."
+      )
+    }
+    # Case 4. Example E.
+    if(direction_benefical=="small" & superiority<=ci_lower & ci_upper<=no_effect) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but also evidence for no increase in risk."
+      )
+    }
+    if(direction_benefical=="large" & no_effect<=ci_lower & ci_upper<=superiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but also evidence for no decrease in response chance."
+      )
+    }
+    # Case 5. Example F.
+    if(direction_benefical=="small" & superiority<=ci_lower & ci_lower<=no_effect & no_effect<ci_upper) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but it may be associated with a increase in risk."
+      )
+    }
+    if(direction_benefical=="large" & ci_lower<no_effect & no_effect<=ci_upper & ci_upper<=superiority) {
+      conclusion  <- paste0(conclusion, 
+                            mention_superiority,
+                            " our results provide evidence for no important benefit of the treatment, but it may be associated with a decrease in response chance."
+      )
+    }
+    # Case 6.
+    if(direction_benefical=="small" & no_effect<ci_lower) {
+      conclusion  <- paste0(conclusion, 
+                            " our results provide evidence for a harm of the treatment."
+      )
+    }
+    if(direction_benefical=="large" & ci_upper<no_effect) {
+      conclusion  <- paste0(conclusion, 
+                            " our results provide evidence for a harm of the treatment."
       )
     }
   }
@@ -673,7 +836,6 @@ conclusionC <- function(estimate=NA,
     }
     
     # Same interpretation of estimate and confidence limits.
-    # -> As as small.
     if(ci_lower_importance==estimate_importance & estimate_importance==ci_upper_importance) {
       # Estimate.
       if(estimate_importance=="Important benefit") {
