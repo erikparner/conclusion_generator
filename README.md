@@ -1,6 +1,8 @@
 ## README
 
-### Conclusion generator
+## Conclusion generator
+
+**Conclusion Generator** is an R implementation of the framework proposed by Schmidt and Parner (2024) for generating standardized textual conclusions from effect estimates and confidence intervals. It provides conclusions in both **Statistical Mode** and **Clinical Mode**, facilitating consistent interpretation and reporting of study results.
 
 The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper [Schmidt and Parner (2024)](https://www.sciencedirect.com/science/article/pii/S1047279724001042), _The Conclusion Generator_, _Annals of Epidemiology_:
 
@@ -11,9 +13,55 @@ A Shiny web app is found [here](https://apps.biostat.au.dk/erikparner/Conclusion
 
 The file `Conclusion_function_1994.R` contains the functions for generating the exact conclusions in Schmidt and Parner (2024).
 
-#### Rumbold et al (2006) example code
+## Citation
 
-The study examines the effect of vitamins C and E supplements on the risk of preeclampsia and perinatal complications.
+If you use **Conclusion Generator** in your research, please cite:
+
+> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.05.002
+
+**BibTeX**
+
+```bibtex
+@article{schmidt2024conclusion,
+  author  = {Schmidt, M. and Parner, E.},
+  title   = {The Conclusion Generator},
+  journal = {Annals of Epidemiology},
+  year    = {2024},
+  doi     = {10.1016/j.annepidem.2024.05.002}
+}
+```
+
+## Installation
+
+The functions can be used directly by downloading the repository and sourcing the main function file.
+
+```r
+source("Conclusion_function.R")
+```
+
+The examples in this README use the following packages:
+
+```r
+library(dplyr)
+library(scales)
+```
+
+Alternatively, clone the repository using Git:
+
+```bash
+git clone https://github.com/erikparner/conclusion_generator.git
+```
+
+and then source the function file:
+
+```r
+source("Conclusion_function.R")
+```
+
+
+## Example 
+
+Rumbold et al (2006)  examines the effect of vitamins C and E supplements on the risk of preeclampsia and perinatal complications.
 
 ``` r
 library(scales)
