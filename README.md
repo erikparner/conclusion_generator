@@ -25,14 +25,9 @@ The file `Conclusion_function_1994.R` contains the functions for generating the 
 The functions can be used directly by downloading the repository and sourcing the main function file.
 
 ```r
-source("Conclusion_function.R")
-```
-
-The examples in this README use the following packages:
-
-```r
 library(dplyr)
 library(scales)
+source("Conclusion_function.R")
 ```
 
 
