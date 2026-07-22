@@ -6,7 +6,9 @@
 
 > Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
 
-for generating standardized textual conclusions from effect estimates and confidence intervals. It provides conclusions in both **Statistical Mode** and **Clinical Mode**, facilitating consistent interpretation and reporting of study results.
+for generating conclusions for scientific papers based on the values and clinical interpretation of the point estimate and confidence interval. 
+It offers two modes for interpretation: (1) **Statistical Mode** provides an accurate statistical interpretation of results, with an optional 
+specification of superiority and noninferiority bounds; (2) **Clinical Mode** evaluates the clinical importance of the point estimate and confidence limits as specified by the user. Both modes assume no uncontrolled biases.
 
 The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper Schmidt and Parner (2024).
 
