@@ -33,18 +33,6 @@ library(dplyr)
 library(scales)
 ```
 
-Alternatively, clone the repository using Git:
-
-```bash
-git clone https://github.com/erikparner/conclusion_generator.git
-```
-
-and then source the function file:
-
-```r
-source("Conclusion_function.R")
-```
-
 
 ## Example 
 
