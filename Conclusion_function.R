@@ -1,4 +1,5 @@
-7# library(scales)
+# library(scales)
+# library(dplyr)
 
 # Format a relative measure as percent increase or decrease. 
 # decimals: Number of decimals that is specified for the relative measure. 
