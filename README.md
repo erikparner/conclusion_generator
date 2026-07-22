@@ -39,12 +39,10 @@ library(scales)
 ## Example 
 
 Rumbold et al (2006) reported the results of a randomized placebo-controlled trial investigated whether vitamins C and E 
-supplements influenced the risk of preeclampsia and perinatal complications. The trial reported ... no significant 
+supplements influenced the risk of preeclampsia and perinatal complications. The trial reported *... no significant 
 differences between the vitamin and placebo groups in the risk of ... death or serious outcomes in the infant 
-(9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)... The authors concluded that Supplementation with vitamins 
-C and E during pregnancy does not reduce the risk ... of death or other serious outcomes in their infants.
-
-
+(9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)...* The authors concluded that *Supplementation with vitamins 
+C and E during pregnancy does not reduce the risk ... of death or other serious outcomes in their infants*.
 
 ``` r
 conclusion_statistical(
