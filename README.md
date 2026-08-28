@@ -8,7 +8,7 @@
 
 for generating conclusions for scientific papers based on the values and clinical interpretation of the point estimate and confidence interval. 
 It offers two modes for interpretation: (1) **Statistical Mode** provides an accurate statistical interpretation of results, with an optional 
-specification of superiority and noninferiority bounds; (2) **Clinical Mode** evaluates the clinical importance of the point estimate and confidence limits as specified by the user. Both modes assume no uncontrolled biases.
+specification of superiority and noninferiority margins; (2) **Clinical Mode** evaluates the clinical importance of the point estimate and confidence limits as specified by the user. Both modes assume no uncontrolled biases.
 
 The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper Schmidt and Parner (2024).
 
@@ -79,7 +79,7 @@ conclusion_clinical(
 which produces the conclusions 
 
 * **Statistical Mode (short)**: <br>
-  *Assuming no uncontrolled biases, our results are most compatible with a relative risk of 0.79, although compatible with relative risks ranging 0.61 to 1.02. With a superiority bound of 0.96 and a noninferiority bound of 1.02, the effect of the treatment remains uncertain.*
+  *Assuming no uncontrolled biases, our results are most compatible with a relative risk of 0.79, although compatible with relative risks ranging 0.61 to 1.02. With a superiority margin of 0.96 and a noninferiority margin of 1.02, the effect of the treatment remains uncertain.*
 * **Statistical Mode (long)**: <br>
   *Assuming no uncontrolled biases, the point estimate of 0.79 corresponds to a 21% risk reduction as the most likely effect given the data, although the interval estimate is compatible with a range from a 39% reduction to a 2% increase in risk from treatment. Given that a reduction of 4%  or more would be considered clinically and economically worthwhile, and an increase of up to 2%  would be considered an acceptable risk, the effect of the treatment remains uncertain.*
 * **Clinical Mode**: <br>
