@@ -1,6 +1,4 @@
-## README
-
-## Conclusion generator
+# Conclusion generator
 
 **Conclusion Generator** is an R implementation of the framework proposed in
 
@@ -33,7 +31,7 @@ source("Conclusion_function.R")
 
 ## Example
 
-Rumbold et al (2006) reported the results of a randomized placebo-controlled trial investigated whether vitamins C and E
+Rumbold et al. (2006) reported the results of a randomized placebo-controlled trial investigated whether vitamins C and E
 supplements influenced the risk of preeclampsia and perinatal complications. The trial reported *... no significant
 differences between the vitamin and placebo groups in the risk of ... death or serious outcomes in the infant
 (9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)...* The authors concluded that *Supplementation with vitamins
@@ -98,6 +96,8 @@ If you use **Conclusion Generator** in your research, please cite:
   author  = {Schmidt, M. and Parner, E.},
   title   = {The Conclusion Generator},
   journal = {Annals of Epidemiology},
+  volume  = {97},
+  pages   = {33--37},
   year    = {2024},
   doi     = {10.1016/j.annepidem.2024.06.008}
 }
@@ -106,6 +106,8 @@ If you use **Conclusion Generator** in your research, please cite:
   author  = {Schmidt, M. and Parner, E.},
   title   = {Contextualizing the Conclusion Generator: From the ASA statement to PhD curriculum},
   journal = {Annals of Epidemiology},
+  volume  = {99},
+  pages   = {54--55},
   year    = {2024},
   doi     = {10.1016/j.annepidem.2024.09.006}
 }
