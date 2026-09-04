@@ -5,6 +5,8 @@
 **Conclusion Generator** is an R implementation of the framework proposed in
 
 > Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
+> Schmidt, M., & Parner, E. (2024). *Contextualizing the Conclusion Generator: From the ASA statement to PhD curriculum* . **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.09.006
+> Schmidt, M., & Parner, E. (2026). *Interpreting compatibility intervals in superiority and non-inferiority trials: a unified framework and implementation in the Conclusion Generator * . **Annals of Epidemiology**. To be published.
 
 for generating conclusions for scientific papers based on the values and clinical interpretation of the point estimate and confidence interval. 
 It offers two modes for interpretation: (1) **Statistical Mode** provides an accurate statistical interpretation of results, with an optional 

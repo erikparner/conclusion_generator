@@ -1,5 +1,4 @@
-# library(scales)
-# library(dplyr)
+7# library(scales)
 
 # Format a relative measure as percent increase or decrease. 
 # decimals: Number of decimals that is specified for the relative measure. 
@@ -357,18 +356,18 @@ conclusion_statistical_short <- function(
     )
     
     # Mention superiority and non-inferiority.
-    mention_superiority_noninferiority <-  paste0("With a superiority margin of ",
+    mention_superiority_noninferiority <-  paste0("With a superiority bound of ",
                                                   number(superiority, accuracy=10^(-decimals)),
                                                   units_text,
-                                                  " and a noninferiority margin of ",
+                                                  " and a noninferiority bound of ",
                                                   number(noninferiority, accuracy=10^(-decimals)),
                                                   units_text,
                                                   ",")
-    mention_superiority <-  paste0("With a superiority margin of ",
+    mention_superiority <-  paste0("With a superiority bound of ",
                                    number(superiority, accuracy=10^(-decimals)),
                                    units_text,
                                    ",")
-    mention_noninferiority <-  paste0("With a noninferiority margin of ",
+    mention_noninferiority <-  paste0("With a noninferiority bound of ",
                                       number(noninferiority, accuracy=10^(-decimals)),
                                       units_text,
                                       ",")
@@ -382,7 +381,7 @@ conclusion_statistical_short <- function(
       scenario==5 ~ paste0(conclusion, " our results provide evidence of non-inferiority, but not superiority of the treatment."),
       scenario==6 ~ paste0(conclusion, " our results provide evidence of non-inferiority, but not superiority of the treatment."),
       scenario==7 ~ paste0(conclusion, " our results provide no evidence of noninferiority or superiority, but it may be associated with an important harm."),
-      scenario==8 ~ paste0(conclusion, " our results provide evidence for harm of the treatment below the non-inferiority margin, but no superiority demonstrated."),
+      scenario==8 ~ paste0(conclusion, " our results provide evidence for harm of the treatment below the non-inferiority bound, but no superiority demonstrated."),
       scenario==9 ~ paste0(conclusion, " our results provide evidence for harm of the treatment, and non-inferiority is possible, but not demonstrated. No superiority is demonstrated."),
       scenario==10 ~ paste0(conclusion, " our results provide no evidence of noninferiority or superiority, but important harm of the treatment.")
     )
@@ -401,7 +400,7 @@ conclusion_statistical_short <- function(
     )
     
     # Superiority.
-    mention_superiority <-  paste0("With a superiority margin of ",
+    mention_superiority <-  paste0("With a superiority bound of ",
                                    number(superiority, accuracy=10^(-decimals)),
                                    units_text,
                                    ",")
@@ -429,7 +428,7 @@ conclusion_statistical_short <- function(
       direction_beneficial=direction_beneficial
     )
     
-    mention_noninferiority <-  paste0("With a noninferiority margin of ",
+    mention_noninferiority <-  paste0("With a noninferiority bound of ",
                                       number(noninferiority, accuracy=10^(-decimals)),
                                       units_text,
                                       ",")
@@ -566,7 +565,7 @@ conclusion_statistical_long <- function(estimate=NA,
       scenario==5 ~ paste0(conclusion, " our results provide evidence of non-inferiority, but not superiority of the treatment."),
       scenario==6 ~ paste0(conclusion, " our results provide evidence of non-inferiority, but not superiority of the treatment."),
       scenario==7 ~ paste0(conclusion, " our results provide no evidence of noninferiority or superiority, but it may be associated with an important harm."),
-      scenario==8 ~ paste0(conclusion, " our results provide evidence for harm of the treatment below the non-inferiority margin, but no superiority demonstrated."),
+      scenario==8 ~ paste0(conclusion, " our results provide evidence for harm of the treatment below the non-inferiority bound, but no superiority demonstrated."),
       scenario==9 ~ paste0(conclusion, " our results provide evidence for harm of the treatment, and non-inferiority is possible, but not demonstrated. No superiority is demonstrated."),
       scenario==10 ~ paste0(conclusion, " our results provide no evidence of noninferiority or superiority, but important harm of the treatment.")
     )
