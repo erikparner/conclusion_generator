@@ -4,12 +4,12 @@
 
 **Conclusion Generator** is an R implementation of the framework proposed in
 
-> Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
-> Schmidt, M., & Parner, E. (2024). *Contextualizing the Conclusion Generator: From the ASA statement to PhD curriculum* . **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.09.006
-> Schmidt, M., & Parner, E. (2026). *Interpreting compatibility intervals in superiority and non-inferiority trials: a unified framework and implementation in the Conclusion Generator * . **Annals of Epidemiology**. To be published.
+> 1. Schmidt, M., & Parner, E. (2024). *The Conclusion Generator*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.06.008
+> 2. Schmidt, M., & Parner, E. (2024). *Contextualizing the Conclusion Generator: From the ASA statement to PhD curriculum*. **Annals of Epidemiology**. https://doi.org/10.1016/j.annepidem.2024.09.006
+> 3. Schmidt, M., & Parner, E. (2026). *Interpreting compatibility intervals in superiority and non-inferiority trials: a unified framework and implementation in the Conclusion Generator*. **Annals of Epidemiology**. To be published.
 
-for generating conclusions for scientific papers based on the values and clinical interpretation of the point estimate and confidence interval. 
-It offers two modes for interpretation: (1) **Statistical Mode** provides an accurate statistical interpretation of results, with an optional 
+for generating conclusions for scientific papers based on the values and clinical interpretation of the point estimate and confidence interval.
+It offers two modes for interpretation: (1) **Statistical Mode** provides an accurate statistical interpretation of results, with an optional
 specification of superiority and noninferiority margins; (2) **Clinical Mode** evaluates the clinical importance of the point estimate and confidence limits as specified by the user. Both modes assume no uncontrolled biases.
 
 The file `Conclusion_function.R` contains updated functions for generating the conclusions that appeared in the paper Schmidt and Parner (2024).
@@ -17,10 +17,9 @@ The file `Conclusion_function.R` contains updated functions for generating the c
 * `conclusion_statistical` creates the conclusions in the *Statistical Mode*.
 * `conclusion_clinical` creates the conclusion in the *Clinical Mode*.
 
-A Shiny web app is found [here](https://apps.biostat.au.dk/erikparner/Conclusion_app/). 
+A Shiny web app is found [here](https://apps.biostat.au.dk/erikparner/Conclusion_app/).
 
 The file `Conclusion_function_1994.R` contains the functions for generating the exact conclusions in Schmidt and Parner (2024).
-
 
 ## Installation
 
@@ -32,17 +31,16 @@ library(scales)
 source("Conclusion_function.R")
 ```
 
+## Example
 
-## Example 
-
-Rumbold et al (2006) reported the results of a randomized placebo-controlled trial investigated whether vitamins C and E 
-supplements influenced the risk of preeclampsia and perinatal complications. The trial reported *... no significant 
-differences between the vitamin and placebo groups in the risk of ... death or serious outcomes in the infant 
-(9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)...* The authors concluded that *Supplementation with vitamins 
+Rumbold et al (2006) reported the results of a randomized placebo-controlled trial investigated whether vitamins C and E
+supplements influenced the risk of preeclampsia and perinatal complications. The trial reported *... no significant
+differences between the vitamin and placebo groups in the risk of ... death or serious outcomes in the infant
+(9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)...* The authors concluded that *Supplementation with vitamins
 C and E during pregnancy does not reduce the risk ... of death or other serious outcomes in their infants*.
 
 The conclusion generator based on the reported results can be generated with the following code:
-``` r
+```r
 conclusion_statistical(
   estimate=0.79,
   ci_lower=0.61,
@@ -75,15 +73,15 @@ conclusion_clinical(
   ci_upper=1.02,
   ci_upper_importance="Too small to be important harm",
   decimals=2
-  )                 
+  )
 ```
 
-which produces the conclusions 
+which produces the conclusions
 
 * **Statistical Mode (short)**: <br>
   *Assuming no uncontrolled biases, our results are most compatible with a relative risk of 0.79, although compatible with relative risks ranging 0.61 to 1.02. With a superiority margin of 0.96 and a noninferiority margin of 1.02, the effect of the treatment remains uncertain.*
 * **Statistical Mode (long)**: <br>
-  *Assuming no uncontrolled biases, the point estimate of 0.79 corresponds to a 21% risk reduction as the most likely effect given the data, although the interval estimate is compatible with a range from a 39% reduction to a 2% increase in risk from treatment. Given that a reduction of 4%  or more would be considered clinically and economically worthwhile, and an increase of up to 2%  would be considered an acceptable risk, the effect of the treatment remains uncertain.*
+  *Assuming no uncontrolled biases, the point estimate of 0.79 corresponds to a 21% risk reduction as the most likely effect given the data, although the interval estimate is compatible with a range from a 39% reduction to a 2% increase in risk from treatment. Given that a reduction of 4% or more would be considered clinically and economically worthwhile, and an increase of up to 2% would be considered an acceptable risk, the effect of the treatment remains uncertain.*
 * **Clinical Mode**: <br>
   *Assuming no uncontrolled biases, our estimated effect of 0.79, corresponding to a 21% risk reduction, supported a clinically important benefit. The data were compatible with an even stronger beneficial effect of as much as 0.61, and incompatible with a harmful effect substantially larger than 1.02.*
 
@@ -102,6 +100,22 @@ If you use **Conclusion Generator** in your research, please cite:
   journal = {Annals of Epidemiology},
   year    = {2024},
   doi     = {10.1016/j.annepidem.2024.06.008}
+}
+
+@article{schmidt2024contextualizing,
+  author  = {Schmidt, M. and Parner, E.},
+  title   = {Contextualizing the Conclusion Generator: From the ASA statement to PhD curriculum},
+  journal = {Annals of Epidemiology},
+  year    = {2024},
+  doi     = {10.1016/j.annepidem.2024.09.006}
+}
+
+@article{schmidt2026interpreting,
+  author  = {Schmidt, M. and Parner, E.},
+  title   = {Interpreting compatibility intervals in superiority and non-inferiority trials: a unified framework and implementation in the Conclusion Generator},
+  journal = {Annals of Epidemiology},
+  year    = {2026},
+  note    = {To be published}
 }
 ```
 
