@@ -37,7 +37,7 @@ differences between the vitamin and placebo groups in the risk of ... death or s
 (9.5% and 12.1%; relative risk, 0.79; 95% CI, 0.61–1.02)...* The authors concluded that *Supplementation with vitamins
 C and E during pregnancy does not reduce the risk ... of death or other serious outcomes in their infants*.
 
-The conclusion generator based on the reported results can be generated with the following code:
+The conclusion generator based on the reported results can be generated with the following code (`Test.R`):
 ```r
 conclusion_statistical(
   estimate=0.79,
